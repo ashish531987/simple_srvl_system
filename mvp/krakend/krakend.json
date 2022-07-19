@@ -1,0 +1,145 @@
+{
+  "version": 2,
+  "host": ["192.168.1.197:5001"],
+  "port": 8080,
+  "timeout": "3000ms",
+  "cache_ttl": "2s",
+  "output_encoding": "json",
+  "name": "MVP",
+  "endpoints": [
+    {
+      "endpoint": "/mvp/api/auth/v1/register/confirm",
+      "headers_to_pass":["*"],
+      "method": "POST",
+      "output_encoding": "json",
+      "extra_config": {
+              "github.com/devopsfaith/krakend-jose/validator": {
+                        "propagate-claims": [["sub", "x-user"]],
+                        "alg": "HS256",
+                        "cache": true,
+                        "audience": ["http://api.example.com"],
+                        "roles_key": "roles",
+                        "issuer": "https://krakend.io",
+                        "roles": ["admin", "device"],
+                        "jwk-url": "http://192.168.1.197:5001/mvp/jwk/symmetric.json",
+                        "disable_jwk_security": true
+                      }
+          },
+       "backend": [
+        {
+          "url_pattern": "/mvp/api/auth/v1/register/confirm",
+          "encoding": "json",
+          "sd": "static",
+          "method": "POST",
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/mvp/api/auth/v1/register/init",
+      "headers_to_pass":["*"],
+      "method": "POST",
+      "output_encoding": "json",
+      "extra_config": {
+              "github.com/devopsfaith/krakend-jose/validator": {
+                        "propagate-claims": [["sub", "x-user"]],
+                        "alg": "HS256",
+                        "cache": true,
+                        "audience": ["http://api.example.com"],
+                        "roles_key": "roles",
+                        "issuer": "https://krakend.io",
+                        "roles": ["admin", "device"],
+                        "jwk-url": "http://192.168.1.197:5001/mvp/jwk/symmetric.json",
+                        "disable_jwk_security": true
+                      }
+          },
+       "backend": [
+        {
+          "url_pattern": "/openmfa/api/auth/v1/register/init",
+          "encoding": "json",
+          "sd": "static",
+          "method": "POST",
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/mvp/api/auth/v1/register/push_id",
+      "headers_to_pass":["*"],
+      "method": "POST",
+      "output_encoding": "json",
+      "extra_config": {
+              "github.com/devopsfaith/krakend-jose/validator": {
+                        "propagate-claims": [["sub", "x-user"]],
+                        "alg": "HS256",
+                        "cache": true,
+                        "audience": ["http://api.example.com"],
+                        "roles_key": "roles",
+                        "issuer": "https://krakend.io",
+                        "roles": ["admin", "device"],
+                        "jwk-url": "http://192.168.1.197:5001/mvp/jwk/symmetric.json",
+                        "disable_jwk_security": true
+                      }
+          },
+       "backend": [
+        {
+          "url_pattern": "/mvp/api/auth/v1/register/push_id",
+          "encoding": "json",
+          "sd": "static",
+          "method": "POST",
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/mvp/api/auth/v1/auth/confirm",
+      "headers_to_pass":["*"],
+      "method": "POST",
+      "output_encoding": "json",
+      "extra_config": {
+              "github.com/devopsfaith/krakend-jose/validator": {
+                        "propagate-claims": [["sub", "x-user"]],
+                        "alg": "HS256",
+                        "cache": true,
+                        "audience": ["http://api.example.com"],
+                        "roles_key": "roles",
+                        "issuer": "https://krakend.io",
+                        "roles": ["admin", "device"],
+                        "jwk-url": "http://192.168.1.197:5001/mvp/jwk/symmetric.json",
+                        "disable_jwk_security": true
+                      }
+          },
+       "backend": [
+        {
+          "url_pattern": "/mvp/api/auth/v1/auth/confirm",
+          "encoding": "json",
+          "sd": "static",
+          "method": "POST",
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/mvp/token",
+      "headers_to_pass": [
+        "Authorization"
+        ],
+      "backend": [
+        {
+          "url_pattern": "/mvp/api/auth/v1/token",
+          "encoding": "json",
+          "method": "GET"
+        }
+      ],
+      "extra_config": {
+        "github.com/devopsfaith/krakend-jose/signer": {
+          "alg": "HS256",
+          "kid": "B5c_UiQ9Ka3pkJsWxUkFW8BDiWtCgGBnrK1bBMXgN-I",
+          "keys-to-sign": ["access_token", "refresh_token"],
+          "jwk-url": "http://192.168.1.197:5001/mvp/jwk/symmetric.json",
+          "disable_jwk_security": true
+        }
+      }
+    }
+  ]
+}
