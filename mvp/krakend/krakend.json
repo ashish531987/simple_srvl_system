@@ -134,7 +134,7 @@
       "extra_config": {
         "github.com/devopsfaith/krakend-jose/signer": {
           "alg": "HS256",
-          "kid": "B5c_UiQ9Ka3pkJsWxUkFW8BDiWtCgGBnrK1bBMXgN-I",
+          "kid": "ab473f90-2661-431a-891d-aab708f74a58",
           "keys-to-sign": ["access_token", "refresh_token"],
           "jwk-url": "http://192.168.1.197:5001/mvp/jwk/symmetric.json",
           "disable_jwk_security": true
