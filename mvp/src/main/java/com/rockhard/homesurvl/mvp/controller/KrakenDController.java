@@ -33,7 +33,7 @@ public class KrakenDController {
                 "        \"iss\": \"https://your-backend\", \n" +
                 "        \"sub\": \"1234567890qwertyuio\", \n" +
                 "        \"jti\": \"mnb23vcsrt756yuiomnbvcx98ertyuiop\", \n" +
-                "        \"roles\": [\"role_a\", \"role_b\"], \n" +
+                "        \"roles\": [\"admin\", \"device\"], \n" +
                 "        \"exp\": " + expiryInString + " \n" +
                 "    }, \n" +
                 "    \"refresh_token\": { \n" +
